@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper的xml的头文件-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyl.dao.SubjectDao">
+    <insert id="addSubject">
+        insert into subject(sid,cno,scontent,sa,sb,sc,sd,skey)
+        values (default,#{cno},#{scontent},#{sa},#{sb},#{sc},#{sd},#{skey})
+    </insert>
+    <update id="updateSubject">
+        update subject set cno=#{cno},scontent=#{scontent},sa=#{sa},sb=#{sb},sc=#{sc},sd=#{sd},skey=#{skey}
+                where sid=#{sid}
+    </update>
+    <delete id="delSingle">
+        delete from subject where sid=#{sid}
+    </delete>
+    <select id="getAllSubject" resultType="com.wyl.pojo.Subject">
+        select * from subject
+    </select>
+    <select id="getById" resultType="com.wyl.pojo.Subject">
+        select * from subject where sid=#{sid}
+    </select>
+    <select id="getSubByCno" resultType="com.wyl.pojo.Subject">
+        select * from subject where cno=#{cno}
+    </select>
+</mapper>

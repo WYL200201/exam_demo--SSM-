@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper的xml的头文件-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyl.dao.ExamDao">
+
+    <insert id="addExam" useGeneratedKeys="true" keyProperty="eid">
+        insert into exam(eid,pname,cno,userid,classid,singlenumber,singlecore,examdate,examtime,testtime)
+                    values(default,#{pname},#{cno},#{userid},#{classid},#{singlenumber},#{singlecore},#{examdate},#{examtime},#{testtime})
+    </insert>
+    <update id="updateExam">
+        update exam set pname=#{pname},
+                        cno=#{cno},
+                        userid=#{userid},
+                        classid=#{classid},
+                        singlenumber=#{singlenumber},
+                        singlecore=#{singlecore},
+                        examtime=#{examtime},
+                        examdate=#{examdate},
+                        testtime=#{testtime}
+                    where eid=#{eid}
+    </update>
+    <delete id="deleExam">
+        delete from exam where eid=#{eid}
+    </delete>
+    <select id="allExam" resultType="com.wyl.pojo.Exam">
+        select * from exam
+    </select>
+    <select id="getExamByEid" resultType="com.wyl.pojo.Exam">
+        select * from exam where eid=#{eid}
+    </select>
+    <select id="getExamsByClassid" resultType="com.wyl.pojo.Exam">
+        select * from exam where classid=#{classid}
+    </select>
+</mapper>

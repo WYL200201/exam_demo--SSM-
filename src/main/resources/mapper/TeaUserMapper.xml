@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper的xml的头文件-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyl.dao.TeaUserDao">
+
+    <select id="teaLogin" resultType="com.wyl.pojo.TeaUser">
+        select * from teauser where username=#{username} and userpwd=#{userpwd}
+    </select>
+    <select id="getTeaTruename" resultType="java.lang.String">
+        select truename from teauser where username=#{username}
+    </select>
+    <select id="getClassId" resultType="java.lang.Integer">
+        select classid from teauser where username=#{username}
+    </select>
+    <select id="getTeaIdByName" resultType="java.lang.Integer">
+        select userid from teauser where username=#{username}
+    </select>
+</mapper>

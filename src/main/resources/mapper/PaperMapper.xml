@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper的xml的头文件-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyl.dao.PaperDao">
+    <insert id="addPaper">
+        insert into paper(pid,eid,sid,cno,scontent,sa,sb,sc,sd,skey)
+                    values(default,#{eid},#{sid},#{cno},#{scontent},#{sa},#{sb},#{sc},#{sd},#{skey})
+    </insert>
+    <delete id="delPaper">
+        delete from paper where eid=#{eid}
+    </delete>
+    <select id="findPaperByEid" resultType="com.wyl.pojo.Paper">
+        select * from paper where eid=#{eid}
+    </select>
+</mapper>

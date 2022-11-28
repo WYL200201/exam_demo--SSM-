@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper的xml的头文件-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyl.dao.UsersDao">
+    <insert id="addUsers">
+        insert into users(userid,username,userpwd,truename,classid)
+                values(default,#{username},#{userpwd},#{truename},#{classid})
+    </insert>
+    <update id="updateUsers">
+        update users set username=#{username},
+                         userpwd=#{userpwd},
+                         truename=#{truename},
+                         classid=#{classid}
+                    where userid=#{userid}
+    </update>
+    <update id="upUserPw">
+        update users set userpwd=#{userpwd}
+                    where userid=#{userid}
+    </update>
+    <delete id="delUserid">
+        delete from users where userid=#{userid}
+    </delete>
+    <delete id="delClassid">
+        delete from users where classid=#{classid}
+    </delete>
+    <!--查询账号密码的SQL语句-->
+    <select id="login" resultType="com.wyl.pojo.Users">
+        select * from users where username=#{username} and userpwd=#{userpwd}
+    </select>
+    <select id="getByName" resultType="com.wyl.pojo.Users">
+        select * from users where username=#{username}
+        -- 返回usersService,写一下业务层查询学生的接口和实现方法
+    </select>
+    <select id="pageById" resultType="com.wyl.pojo.Users">
+        select * from users where classid=#{classid}
+    </select>
+    <select id="getByUserid" resultType="com.wyl.pojo.Users">
+        select * from users where userid=#{userid}
+    </select>
+    <select id="findUserIdByName" resultType="java.lang.Integer">
+        select userid from users where username=#{username}
+    </select>
+    <select id="findTrueName" resultType="java.lang.String">
+        select truename from users where username=#{username}
+    </select>
+    <select id="findClassIdByName" resultType="java.lang.Integer">
+        select classid from users where username=#{username}
+    </select>
+    <select id="getUserid" resultType="com.wyl.pojo.Users">
+        select userid from users where classid=#{classid}
+    </select>
+</mapper>
+

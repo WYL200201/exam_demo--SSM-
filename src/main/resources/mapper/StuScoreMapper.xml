@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper的xml的头文件-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyl.dao.StuScoreDao">
+
+    <insert id="addStuScore">
+        insert into studentexam(seid,userid,classid,eid,pname,zscore,score,titime)
+                    values
+                        (default,#{userid},#{classid},#{eid},
+                         #{pname},#{zscore},#{score},#{titime})
+    </insert>
+    <delete id="delateByUser">
+        delete from studentexam where userid=#{userid}
+    </delete>
+    <delete id="deleteByEid">
+        delete from studentexam where eid=#{eid}
+    </delete>
+    <select id="findStuScore" resultType="com.wyl.pojo.StuScore">
+        select *
+        from studentexam where userid=#{userid}
+    </select>
+    <select id="getIfDone" resultType="com.wyl.pojo.StuScore">
+        select * from studentexam where userid=#{userid} and eid=#{eid}
+    </select>
+    <select id="findStuScoreByClassid" resultType="com.wyl.pojo.StuScore">
+        select * from studentexam where classid=#{classid}
+    </select>
+</mapper>
